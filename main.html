@@ -18,6 +18,13 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- Font awsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body>
@@ -60,6 +67,7 @@
         </div>
     </section>
 
+    <!-- head section -->
     <section
         class="flex flex-col md:flex-row justify-between items-center mt-6 mx-auto w-[90%] p-2 border-b-2 border-gray-100 rounded-lg gap-4">
 
@@ -84,6 +92,33 @@
 
     </section>
 
+    <!-- cards -->
+    <section
+        class="flex flex-col md:flex-row justify-between items-center mt-6 mx-auto w-[90%] p-2 border-b-2 border-gray-100 rounded-lg gap-4">
+
+        <div class="main grid grid-cols-4 ">
+            <div class="card space-y-8 border border-gray-200 shadow-md">
+                <div class="status">
+                    <span class="btn rounded-full">High</span>
+                </div>
+                <div class="card-content  space-y-4">
+                    <div class="">
+                        <h3 class="font-bold">Fix navigation menu on mobile devices</h3>
+                        <p class=" text-gray-500 text-[80%]">The navigation menu doesn't collapse properly on mobile devices...</p>
+                    </div>
+                    <div class="issues">
+                        <button class="btn text-red-500 btn-outline btn-error hover:text-white rounded-full"><i class="fa-solid fa-bug"></i></i> Bug</button>
+                        <button class="btn rounded-full"><i class="fa-solid fa-handshake-angle"></i>help wanted</button>
+                    </div>
+                    <hr class=" border-gray-300">
+                    <div class="extension">
+                        <p>#1 by john_doe</p>
+                        <p>1/15/2024</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 
 </html>

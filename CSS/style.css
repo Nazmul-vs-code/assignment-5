@@ -10,3 +10,17 @@
     /* min-height: 100vh;          */
     padding-bottom: 40px;
 }
+
+.card {
+    padding: 5%;
+
+}
+
+.card-content {
+    margin-top: 5%;
+}
+
+.extension p {
+    color: gray;
+    width: 70%
+}
