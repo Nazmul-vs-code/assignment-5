@@ -7,7 +7,7 @@ const signin = () => {
     const password = document.getElementById('input-password');
     const pass_value = password.value;
     if (email_value=='admin' && pass_value=='admin123') {
-        window.location.href = "../main.html";
+        window.location.href = "./";
     }
     else{
         confirm("Invalid credentials!! Please, make sure to use actual username and password.")
