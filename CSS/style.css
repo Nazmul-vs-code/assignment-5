@@ -1,0 +1,12 @@
+
+* {
+    font-family: "Geist", sans-serif;
+}
+
+#login {
+    display: flex;          
+    justify-content: center;   
+    align-items: center;       
+    /* min-height: 100vh;          */
+    padding-bottom: 40px;
+}
