@@ -47,9 +47,9 @@
                                 <path d="m21 21-4.3-4.3"></path>
                             </g>
                         </svg>
-                        <input type="search" class="grow" placeholder="Search issues.." />
+                        <input id="search-input" type="search" class="grow" placeholder="Search issues.." />
                     </label>
-                    <button class="btn btn-primary">+ New Issue</button>
+                    <button onclick="search()" class="btn btn-primary">+ New Issue</button>
                 </div>
         </header>
     </section>
@@ -59,9 +59,10 @@
         <div class="flex justify-between items-center w-full">
 
             <ul class="flex flex-row items-center gap-6 list-none">
-                <li class="btn hover:btn-primary cursor-pointer font-medium"><a>All</a></li>
-                <li class="btn hover:btn-primary cursor-pointer font-medium"><a>Open</a></li>
-                <li class="btn hover:btn-primary cursor-pointer font-medium"><a>Closed</a></li>
+                <button onclick="filterByStatus('all')" class="btn hover:btn-primary cursor-pointer font-medium">All</button>
+                <button onclick="filterByStatus('open')" class="btn hover:btn-primary cursor-pointer font-medium">Open</button>
+                <button onclick="filterByStatus('closed')" class="btn hover:btn-primary cursor-pointer font-medium">Closed</button>
+                
             </ul>
 
 
@@ -75,7 +76,7 @@
         <div class="flex gap-4 items-center">
             <img class="w-10 h-10" src="./assets/Aperture.png" alt="Logo">
             <div>
-                <h3 class="font-bold text-xl leading-tight">50 Issues</h3>
+                <h3  class="font-bold text-xl leading-tight"><span id="issues">50</span> Issues</h3>
                 <p class="text-sm opacity-70">Track and manage your project issues</p>
             </div>
         </div>
@@ -97,8 +98,8 @@
     <section
         class="flex flex-col md:flex-row justify-between items-center mt-6 mx-auto w-[90%] p-2 border-b-2 border-gray-100 rounded-lg gap-4">
 
-        <div class="main grid grid-cols-4 ">
-            <div class="card space-y-8 border border-gray-200 shadow-md">
+        <div id="issue-container" class="main grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+            <!-- <div class="card space-y-8 border border-gray-200 shadow-md">
                 <div class="status">
                     <span class="btn rounded-full">High</span>
                 </div>
@@ -117,9 +118,12 @@
                         <p>1/15/2024</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
+
+
+    <script src="./script.js"></script>
 </body>
 
 </html>
