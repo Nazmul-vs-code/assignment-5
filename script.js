@@ -1,12 +1,14 @@
 let allIssues = [];
 
 const issueLoaded = () => {
+    manageLoading(true)
     fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues')
         .then((res) => res.json())
         .then((json) => {
             allIssues = json.data;    // Save it to memory
 
             displayIssues(allIssues); // Show it on screen
+            manageLoading(false)
         })
 
 }
@@ -28,7 +30,7 @@ const filterByStatus = (status) => {
 const displayIssues = (data) => {
     const issueContainer = document.getElementById('issue-container');
     issueContainer.innerHTML = "";
-    
+
     // loader(true);
     // issueContainer.innerHTML = "";
 
@@ -106,10 +108,15 @@ const displayIssues = (data) => {
 const search = () => {
     // get search value 
     const query = document.getElementById('search-input').value;
-    
+    manageLoading(true)
+
     fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${query}`)
-    .then((res) => res.json())
-    .then((json) => displayIssues(json.data))
+        .then((res) => res.json())
+        .then((json) => {
+            displayIssues(json.data),
+            manageLoading(false)
+        }
+        )
 }
 
 
@@ -121,7 +128,7 @@ const openMyModal = (id) => {
             const issue = json.data;
             const modal = document.getElementById('my_modal_1');
 
-            
+
             // Icon selctions
             const icons = {
                 'bug': 'fa-bug',
@@ -130,18 +137,18 @@ const openMyModal = (id) => {
                 'help wanted': 'fa-handshake-angle',
                 'good first issue': 'fa-star'
             };
-            
+
             // 2. Get icons for both labels (falling back to fa-tag or fa-circle-info if not found)
             const iconClass1 = icons[issue.labels[0]] || 'fa-circle-info';
             const iconClass2 = icons[issue.labels[1]] || 'fa-tag';
-            
+
             // 2. Change element to issue here
             const label2Color = issue.labels[1] === 'help wanted'
-            ? 'border-orange-500 text-orange-500'
-            : 'border-green-500 text-green-500';
-            
-            
-            
+                ? 'border-orange-500 text-orange-500'
+                : 'border-green-500 text-green-500';
+
+
+
             modal.innerHTML = `
             <div class="modal-box max-w-2xl">
             <h3 class="text-2xl mt-8 font-bold">${issue.title}</h3>
@@ -180,33 +187,34 @@ const openMyModal = (id) => {
                             </div>
                 </div>
                 `;
-                
-                // 3. Finally, show the modal
-                modal.showModal();
-            })
-            
-        }
-        
-        
-        
-        
-        
-        const loader = (show) => {
-            const issueContainer = document.getElementById('issue-container');
-            
-            if (show) {
-                issueContainer.innerHTML = `
-                <div class="flex justify-center items-center col-span-full py-20">
-                <span class="loading loading-spinner loading-lg text-primary"></span>
-                </div>
-                `;
-            }
-        }
-        
 
-const removeActive = async() => {
+            // 3. Finally, show the modal
+            modal.showModal();
+        })
+
+}
+
+
+
+
+
+const manageLoading = (status) => {
+    const loadingSection = document.getElementById('loading');
+    const cardsBody = document.getElementById('cards-body');
+
+    if (status === true) {
+        loadingSection.classList.remove('hidden');
+        cardsBody.classList.add('hidden');
+    } else {
+        // Now loadingSection is defined for both blocks!
+        loadingSection.classList.add('hidden');
+        cardsBody.classList.remove('hidden');
+    }
+}
+
+const removeActive = async () => {
     const active = document.querySelectorAll('.section')
-    active.forEach(btn  => btn.classList.remove('active'));
+    active.forEach(btn => btn.classList.remove('active'));
 }
 
 issueLoaded()
