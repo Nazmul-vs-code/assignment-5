@@ -20,7 +20,10 @@
     margin-top: 5%;
 }
 
-.extension p {
+.extension {
     color: gray;
-    width: 70%
+}
+
+.extention-p {
+    font-size: 10px;
 }

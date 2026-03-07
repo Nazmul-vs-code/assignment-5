@@ -59,10 +59,13 @@
         <div class="flex justify-between items-center w-full">
 
             <ul class="flex flex-row items-center gap-6 list-none">
-                <button onclick="filterByStatus('all')" class="btn hover:btn-primary cursor-pointer font-medium">All</button>
-                <button onclick="filterByStatus('open')" class="btn hover:btn-primary cursor-pointer font-medium">Open</button>
-                <button onclick="filterByStatus('closed')" class="btn hover:btn-primary cursor-pointer font-medium">Closed</button>
-                
+                <button onclick="filterByStatus('all')"
+                    class="btn hover:btn-primary cursor-pointer font-medium">All</button>
+                <button onclick="filterByStatus('open')"
+                    class="btn hover:btn-primary cursor-pointer font-medium">Open</button>
+                <button onclick="filterByStatus('closed')"
+                    class="btn hover:btn-primary cursor-pointer font-medium">Closed</button>
+
             </ul>
 
 
@@ -76,7 +79,7 @@
         <div class="flex gap-4 items-center">
             <img class="w-10 h-10" src="./assets/Aperture.png" alt="Logo">
             <div>
-                <h3  class="font-bold text-xl leading-tight"><span id="issues">50</span> Issues</h3>
+                <h3 class="font-bold text-xl leading-tight"><span id="issues">50</span> Issues</h3>
                 <p class="text-sm opacity-70">Track and manage your project issues</p>
             </div>
         </div>
@@ -99,29 +102,27 @@
         class="flex flex-col md:flex-row justify-between items-center mt-6 mx-auto w-[90%] p-2 border-b-2 border-gray-100 rounded-lg gap-4">
 
         <div id="issue-container" class="main grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-            <!-- <div class="card space-y-8 border border-gray-200 shadow-md">
-                <div class="status">
-                    <span class="btn rounded-full">High</span>
-                </div>
-                <div class="card-content  space-y-4">
-                    <div class="">
-                        <h3 class="font-bold">Fix navigation menu on mobile devices</h3>
-                        <p class=" text-gray-500 text-[80%]">The navigation menu doesn't collapse properly on mobile devices...</p>
-                    </div>
-                    <div class="issues">
-                        <button class="btn text-red-500 btn-outline btn-error hover:text-white rounded-full"><i class="fa-solid fa-bug"></i></i> Bug</button>
-                        <button class="btn rounded-full"><i class="fa-solid fa-handshake-angle"></i>help wanted</button>
-                    </div>
-                    <hr class=" border-gray-300">
-                    <div class="extension">
-                        <p>#1 by john_doe</p>
-                        <p>1/15/2024</p>
-                    </div>
-                </div>
-            </div> -->
+
         </div>
     </section>
 
+    <!-- modal -->
+    <section>
+        <!-- Open the modal using ID.showModal() method -->
+        <button class="btn" onclick="modalPopup()"></button>
+        <dialog id="my_modal_1" class="modal">
+            <div class="modal-box">
+                <h3 class="text-lg font-bold">Hello!</h3>
+                <p class="py-4">Press ESC key or click the button below to close</p>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button class="btn">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+    </section>
 
     <script src="./script.js"></script>
 </body>
