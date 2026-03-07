@@ -58,16 +58,14 @@
     <section id="nav" class="mt-6 shadow-sm mx-auto w-[90%] p-2 border border-base-300 rounded-lg">
         <div class="flex justify-between items-center w-full">
 
-            <ul class="flex flex-row items-center gap-6 list-none">
-                <button onclick="filterByStatus('all')"
-                    class="btn hover:btn-primary cursor-pointer font-medium">All</button>
-                <button onclick="filterByStatus('open')"
-                    class="btn hover:btn-primary cursor-pointer font-medium">Open</button>
-                <button onclick="filterByStatus('closed')"
-                    class="btn hover:btn-primary cursor-pointer font-medium">Closed</button>
-
+            <ul class="flex  flex-row items-center gap-6 list-none">
+                <button id="all"  onclick=" filterByStatus('all')"
+                    class="btn active section hover:btn-primary cursor-pointer font-medium">All</button>
+                <button id="open" onclick=" filterByStatus('open')"
+                    class="btn section hover:btn-primary cursor-pointer font-medium">Open</button>
+                <button id="closed" onclick=" filterByStatus('closed')"
+                    class="btn section hover:btn-primary cursor-pointer font-medium">Closed</button>
             </ul>
-
 
         </div>
     </section>
@@ -98,7 +96,7 @@
     </section>
 
     <!-- cards -->
-    <section
+    <section id="cards-body"
         class="flex flex-col md:flex-row justify-between items-center mt-6 mx-auto w-[90%] p-2 border-b-2 border-gray-100 rounded-lg gap-4">
 
         <div id="issue-container" class="main grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
@@ -108,7 +106,6 @@
 
     <!-- modal -->
     <section>
-        <!-- Open the modal using ID.showModal() method -->
         <button class="btn" onclick="modalPopup()"></button>
         <dialog id="my_modal_1" class="modal">
             <div class="modal-box">
@@ -116,12 +113,15 @@
                 <p class="py-4">Press ESC key or click the button below to close</p>
                 <div class="modal-action">
                     <form method="dialog">
-                        <!-- if there is a button in form, it will close the modal -->
                         <button class="btn">Close</button>
                     </form>
                 </div>
             </div>
         </dialog>
+    </section>
+
+    <section>
+        <!-- <span class="loading loading-spinner loading-xl"></span> -->
     </section>
 
     <script src="./script.js"></script>

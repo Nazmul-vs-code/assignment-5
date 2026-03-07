@@ -5,6 +5,7 @@ const issueLoaded = () => {
         .then((res) => res.json())
         .then((json) => {
             allIssues = json.data;    // Save it to memory
+
             displayIssues(allIssues); // Show it on screen
         })
 
@@ -19,11 +20,17 @@ const filterByStatus = (status) => {
         const filterd = allIssues.filter(item => item.status == status);
         displayIssues(filterd)
     }
+    const clickedBtn = document.getElementById(`${status}`);
+    removeActive()
+    clickedBtn.classList.add("active")
 }
 
 const displayIssues = (data) => {
     const issueContainer = document.getElementById('issue-container');
     issueContainer.innerHTML = "";
+    
+    // loader(true);
+    // issueContainer.innerHTML = "";
 
     data.forEach(element => {
         const card = document.createElement("div");
@@ -95,15 +102,14 @@ const displayIssues = (data) => {
 }
 
 
-issueLoaded()
 
 const search = () => {
     // get search value 
     const query = document.getElementById('search-input').value;
-
+    
     fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${query}`)
-        .then((res) => res.json())
-        .then((json) => displayIssues(json.data))
+    .then((res) => res.json())
+    .then((json) => displayIssues(json.data))
 }
 
 
@@ -115,7 +121,7 @@ const openMyModal = (id) => {
             const issue = json.data;
             const modal = document.getElementById('my_modal_1');
 
-
+            
             // Icon selctions
             const icons = {
                 'bug': 'fa-bug',
@@ -124,59 +130,83 @@ const openMyModal = (id) => {
                 'help wanted': 'fa-handshake-angle',
                 'good first issue': 'fa-star'
             };
-
+            
             // 2. Get icons for both labels (falling back to fa-tag or fa-circle-info if not found)
             const iconClass1 = icons[issue.labels[0]] || 'fa-circle-info';
             const iconClass2 = icons[issue.labels[1]] || 'fa-tag';
-
+            
             // 2. Change element to issue here
             const label2Color = issue.labels[1] === 'help wanted'
-                ? 'border-orange-500 text-orange-500'
-                : 'border-green-500 text-green-500';
-
-
-
+            ? 'border-orange-500 text-orange-500'
+            : 'border-green-500 text-green-500';
+            
+            
+            
             modal.innerHTML = `
-                <div class="modal-box max-w-2xl">
-                    <h3 class="text-2xl mt-8 font-bold">${issue.title}</h3>
-                <div class="flex gap-4 items-start">
-                        <span class="badge badge-primary">${issue.status}</span>
-                        <p class="text-gray-500">${issue.status} by ${issue.author}   .${issue.createdAt}</p>
-                    </div>
-                    <div class="issues mt-8 flex flex-wrap">
-                            <button class="btn text-red-500 btn-outline btn-error hover:text-white rounded-full"><i class="fa-solid ${iconClass1}"></i></i>${issue.labels[0]}</button>
-                            <button 
-    class="btn rounded-full ${label2Color} ${issue.labels[1] ? '' : 'hidden'}" 
-    id="issue-2">
-    <i class="fa-solid ${iconClass2}"></i>
+            <div class="modal-box max-w-2xl">
+            <h3 class="text-2xl mt-8 font-bold">${issue.title}</h3>
+            <div class="flex gap-4 items-start">
+            <span class="badge badge-primary">${issue.status}</span>
+            <p class="text-gray-500">${issue.status} by ${issue.author}   .${issue.createdAt}</p>
+            </div>
+            <div class="issues mt-8 flex flex-wrap">
+            <button class="btn text-red-500 btn-outline btn-error hover:text-white rounded-full"><i class="fa-solid ${iconClass1}"></i></i>${issue.labels[0]}</button>
+            <button 
+            class="btn rounded-full ${label2Color} ${issue.labels[1] ? '' : 'hidden'}" 
+            id="issue-2">
+            <i class="fa-solid ${iconClass2}"></i>
     ${issue.labels[1]}
-</button>
-                        </div>
+    </button>
+    </div>
                     
-                    <p class="py-6 text-gray-600 border-b border-gray-100">${issue.description}</p>
+    <p class="py-6 text-gray-600 border-b border-gray-100">${issue.description}</p>
                     
                     <div class="grid grid-cols-2 gap-4 py-4 text-sm">
-                        <div>
-                            <p class="">assignee:</p>
-                            <p class="font-semibold">${issue.assignee}</p>
-                        </div>
-                        <div>
-                            <p class="font-semibold">Priority</p>
-                            <p class="btn capitalize text-red-500">${issue.priority}</p>
-                        </div>
+                    <div>
+                    <p class="">assignee:</p>
+                    <p class="font-semibold">${issue.assignee}</p>
                     </div>
-
+                    <div>
+                    <p class="font-semibold">Priority</p>
+                    <p class="btn capitalize text-red-500">${issue.priority}</p>
+                    </div>
+                    </div>
+                    
                     <div class="modal-action">
-                        <form method="dialog">
-                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    <form method="dialog">
+                    <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                             <button class="btn">Close</button>
-                        </form>
-                    </div>
+                            </form>
+                            </div>
                 </div>
-            `;
+                `;
+                
+                // 3. Finally, show the modal
+                modal.showModal();
+            })
+            
+        }
+        
+        
+        
+        
+        
+        const loader = (show) => {
+            const issueContainer = document.getElementById('issue-container');
+            
+            if (show) {
+                issueContainer.innerHTML = `
+                <div class="flex justify-center items-center col-span-full py-20">
+                <span class="loading loading-spinner loading-lg text-primary"></span>
+                </div>
+                `;
+            }
+        }
+        
 
-            // 3. Finally, show the modal
-            modal.showModal();
-        })
-
+const removeActive = async() => {
+    const active = document.querySelectorAll('.section')
+    active.forEach(btn  => btn.classList.remove('active'));
 }
+
+issueLoaded()

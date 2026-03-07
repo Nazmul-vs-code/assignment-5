@@ -27,3 +27,8 @@
 .extention-p {
     font-size: 10px;
 }
+
+.active {
+    background-color: blue;
+    color: white;
+}
